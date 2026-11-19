@@ -1,0 +1,116 @@
+[
+  {
+    "rule_id": "RR-VPC-001",
+    "title": "Security Group Allows Unrestricted Inbound SSH (Port 22)",
+    "service": "VPC",
+    "resource_type": "security_group",
+    "severity": "CRITICAL",
+    "cvss_score": 9.8,
+    "description": "An inbound firewall rule permits SSH (TCP port 22) connections from anywhere on the internet (0.0.0.0/0), exposing virtual server instances directly to brute-force attacks and zero-day remote exploit payloads.",
+    "rationale": "Automated threat botnets continuously scan IPv4 address space for open SSH services to launch dictionary credential attacks, key harvesting, and botnet enrollment.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.9.5.1", "CLD.9.5.2", "CLD.13.1.4"],
+      "csa_star": ["IVS-06", "IVS-07", "IAM-05"]
+    },
+    "remediation": {
+      "summary": "Remove 0.0.0.0/0 inbound rules for port 22 and restrict SSH management exclusively to a dedicated VPN gateway, IBM Cloud Direct Link, or internal bastion host.",
+      "ibmcloud_cli": "ibmcloud is security-group-rule-delete <SECURITY_GROUP_ID> <RULE_ID> --force\nibmcloud is security-group-rule-add <SECURITY_GROUP_ID> inbound tcp --port-min 22 --port-max 22 --remote <CORPORATE_BASTION_CIDR>",
+      "console_steps": "1. In IBM Cloud Console, open VPC Infrastructure > Security groups.\n2. Click the affected Security Group > Rules tab.\n3. Delete the rule allowing Port 22 from 0.0.0.0/0.\n4. Add a replacement rule specifying your secure corporate CIDR block."
+    }
+  },
+  {
+    "rule_id": "RR-VPC-002",
+    "title": "Security Group Allows Unrestricted Inbound RDP (Port 3389)",
+    "service": "VPC",
+    "resource_type": "security_group",
+    "severity": "CRITICAL",
+    "cvss_score": 9.8,
+    "description": "An inbound rule allows Microsoft Remote Desktop Protocol (TCP port 3389) from 0.0.0.0/0, leaving Windows Virtual Server instances directly vulnerable to remote code execution and credential spraying.",
+    "rationale": "Internet-exposed RDP is the primary initial access vector documented in enterprise ransomware incidents (e.g. BlueKeep, DejaBlue).",
+    "compliance_mappings": {
+      "iso27017": ["CLD.9.5.1", "CLD.9.5.2", "CLD.13.1.4"],
+      "csa_star": ["IVS-06", "IVS-07", "IAM-05"]
+    },
+    "remediation": {
+      "summary": "Delete 0.0.0.0/0 inbound RDP rules. Route administrative RDP traffic over IBM Cloud Client-to-Site VPN or Private Endpoints only.",
+      "ibmcloud_cli": "ibmcloud is security-group-rule-delete <SECURITY_GROUP_ID> <RULE_ID> --force",
+      "console_steps": "1. In VPC Infrastructure, locate the Security Group.\n2. Remove the inbound rule permitting port 3389 from 0.0.0.0/0.\n3. Implement IBM Cloud Client-to-Site VPN Server for Windows administration."
+    }
+  },
+  {
+    "rule_id": "RR-VPC-003",
+    "title": "Security Group Exposes Database Ports to the Public Internet",
+    "service": "VPC",
+    "resource_type": "security_group",
+    "severity": "CRITICAL",
+    "cvss_score": 9.5,
+    "description": "Database management ports (MySQL 3306, PostgreSQL 5432, MongoDB 27017, MSSQL 1433, Oracle 1521, or Redis 6379) are open to 0.0.0.0/0.",
+    "rationale": "Direct internet exposure of relational and NoSQL databases enables remote unauthenticated attackers to exploit database vulnerabilities, dump tables, or install crypto-miners.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.9.5.1", "CLD.12.1.5", "CLD.13.1.4"],
+      "csa_star": ["IVS-06", "DSP-07"]
+    },
+    "remediation": {
+      "summary": "Restrict database security group ingress exclusively to the application subnet CIDR (e.g., 10.240.1.0/24) or application security group ID.",
+      "ibmcloud_cli": "ibmcloud is security-group-rule-delete <SECURITY_GROUP_ID> <RULE_ID> --force\nibmcloud is security-group-rule-add <SECURITY_GROUP_ID> inbound tcp --port-min 3306 --port-max 3306 --remote <APP_SECURITY_GROUP_ID>",
+      "console_steps": "1. Navigate to VPC Infrastructure > Security groups.\n2. Open the Database Security Group.\n3. Delete the rule opening database ports to 0.0.0.0/0.\n4. Add an inbound rule referencing the application security group as the remote source."
+    }
+  },
+  {
+    "rule_id": "RR-VPC-004",
+    "title": "Default Security Group Inbound Rule Allows All Traffic (ANY:ANY)",
+    "service": "VPC",
+    "resource_type": "security_group",
+    "severity": "HIGH",
+    "cvss_score": 8.2,
+    "description": "The default security group created automatically with the VPC contains an inbound rule allowing all protocols and all ports from 0.0.0.0/0.",
+    "rationale": "Default security groups should never be used for production workloads and should default to zero-trust deny-all ingress to prevent newly launched network interfaces from accidental exposure.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.9.5.1", "CLD.13.1.4"],
+      "csa_star": ["IVS-06", "IVS-07"]
+    },
+    "remediation": {
+      "summary": "Remove all inbound rules from the default security group and provision dedicated, workload-specific security groups instead.",
+      "ibmcloud_cli": "ibmcloud is security-group-rule-delete <DEFAULT_SG_ID> <RULE_ID> --force",
+      "console_steps": "1. Open VPC Infrastructure > Security Groups > select default security group.\n2. Remove any rule with Protocol: ALL and Source: 0.0.0.0/0."
+    }
+  },
+  {
+    "rule_id": "RR-VPC-005",
+    "title": "Security Group Exposes Administrative Web Portals to Public Internet",
+    "service": "VPC",
+    "resource_type": "security_group",
+    "severity": "HIGH",
+    "cvss_score": 7.5,
+    "description": "Inbound rules allow public internet traffic to administrative web management ports such as 8080, 8443, or 9090 from 0.0.0.0/0.",
+    "rationale": "Exposed management interfaces provide attackers access to admin login portals, debug consoles, and unpatched application dashboard interfaces.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.9.5.2", "CLD.13.1.4"],
+      "csa_star": ["AIS-04", "IVS-06"]
+    },
+    "remediation": {
+      "summary": "Restrict access to administration ports to specific corporate IP address ranges or use IBM Cloud App ID behind an Application Load Balancer.",
+      "ibmcloud_cli": "ibmcloud is security-group-rule-delete <SECURITY_GROUP_ID> <RULE_ID> --force",
+      "console_steps": "1. Select Security Group in IBM Cloud Console.\n2. Update inbound port 8443/8080 rule to specify allowed company CIDR only."
+    }
+  },
+  {
+    "rule_id": "RR-VPC-006",
+    "title": "VPC Classic Access Enabled",
+    "service": "VPC",
+    "resource_type": "vpc",
+    "severity": "MEDIUM",
+    "cvss_score": 6.0,
+    "description": "The VPC has Classic Infrastructure Access enabled, establishing a bridge between modern Gen 2 VPC isolation boundaries and legacy IBM Cloud Classic bare-metal resources.",
+    "rationale": "Classic Access breaks standard zero-trust software-defined network isolation, enabling lateral traversal from legacy unsegmented subnets into high-security VPC tiers.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.9.5.1", "CLD.13.1.4"],
+      "csa_star": ["IVS-01", "IVS-06"]
+    },
+    "remediation": {
+      "summary": "Deploy dedicated VPCs without Classic Access enabled for workloads requiring strict network isolation.",
+      "ibmcloud_cli": "ibmcloud is vpc-create <VPC_NAME> --classic-access false",
+      "console_steps": "1. When provisioning VPCs in IBM Cloud Console, ensure 'Enable Classic Access' checkbox remains unchecked."
+    }
+  }
+]

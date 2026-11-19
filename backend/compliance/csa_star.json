@@ -1,0 +1,135 @@
+[
+  {
+    "control_id": "IVS-01",
+    "domain": "Infrastructure & Virtualization Security",
+    "title": "Network Architecture & Isolation",
+    "description": "Establish and maintain network architecture segmentation and defense-in-depth perimeter boundaries between cloud workloads.",
+    "rules_mapped": ["RR-VPC-006"]
+  },
+  {
+    "control_id": "IVS-06",
+    "domain": "Infrastructure & Virtualization Security",
+    "title": "Network Security & Ingress Filtering",
+    "description": "Network traffic to virtual interfaces must be restricted via security group firewalls, eliminating open 0.0.0.0/0 administrative and database ports.",
+    "rules_mapped": ["RR-COS-001", "RR-COS-002", "RR-VPC-001", "RR-VPC-002", "RR-VPC-003", "RR-VPC-004", "RR-VPC-005", "RR-VPC-006", "RR-IAM-005"]
+  },
+  {
+    "control_id": "IVS-07",
+    "domain": "Infrastructure & Virtualization Security",
+    "title": "Default Security Group Zero-Trust Configuration",
+    "description": "Default network access controls must deny all ingress traffic until explicit business exceptions are granted.",
+    "rules_mapped": ["RR-VPC-001", "RR-VPC-002", "RR-VPC-004"]
+  },
+  {
+    "control_id": "IAM-01",
+    "domain": "Identity & Access Management",
+    "title": "User Access Entitlements & Role Definition",
+    "description": "Enforce strict role-based access control (RBAC) ensuring identities possess only the least privilege necessary.",
+    "rules_mapped": ["RR-IAM-001"]
+  },
+  {
+    "control_id": "IAM-02",
+    "domain": "Identity & Access Management",
+    "title": "Privileged User Management & Separation of Duties",
+    "description": "Restrict wildcard administrative access over cloud infrastructure and segregate duties between developers and operators.",
+    "rules_mapped": ["RR-IAM-001", "RR-IAM-003"]
+  },
+  {
+    "control_id": "IAM-03",
+    "domain": "Identity & Access Management",
+    "title": "Multi-Factor Authentication (MFA)",
+    "description": "Multi-Factor Authentication (MFA) must be enforced for all users accessing cloud management consoles and administrative APIs.",
+    "rules_mapped": ["RR-IAM-002"]
+  },
+  {
+    "control_id": "IAM-04",
+    "domain": "Identity & Access Management",
+    "title": "Credential Lifecycle & Key Rotation",
+    "description": "API keys and programmatic credentials must undergo periodic automated rotation not exceeding 90 days.",
+    "rules_mapped": ["RR-IAM-004"]
+  },
+  {
+    "control_id": "IAM-05",
+    "domain": "Identity & Access Management",
+    "title": "Access Restriction & Source Verification",
+    "description": "Administrative sessions must be restricted by network origin IP allowlists and strong credential authentication.",
+    "rules_mapped": ["RR-VPC-001", "RR-VPC-002", "RR-IAM-001", "RR-IAM-002", "RR-IAM-003", "RR-IAM-005"]
+  },
+  {
+    "control_id": "DSP-01",
+    "domain": "Data Security & Privacy Lifecycle Management",
+    "title": "Data Inventory & Public Access Prevention",
+    "description": "Identify and classify sensitive cloud storage data assets and prohibit unauthorized anonymous public internet read access.",
+    "rules_mapped": ["RR-COS-001"]
+  },
+  {
+    "control_id": "DSP-03",
+    "domain": "Data Security & Privacy Lifecycle Management",
+    "title": "Data Integrity, Backup & Versioning",
+    "description": "Enable object versioning and immutable retention to protect critical storage data from accidental deletion or malicious tampering.",
+    "rules_mapped": ["RR-COS-004"]
+  },
+  {
+    "control_id": "DSP-07",
+    "domain": "Data Security & Privacy Lifecycle Management",
+    "title": "Sensitive Data Ingress & Egress Boundaries",
+    "description": "Protect database and storage endpoints from direct public internet exposure through private endpoints and strict firewall rules.",
+    "rules_mapped": ["RR-COS-001", "RR-VPC-003"]
+  },
+  {
+    "control_id": "DSP-08",
+    "domain": "Data Security & Privacy Lifecycle Management",
+    "title": "Data at Rest Encryption",
+    "description": "Cloud data at rest must be encrypted using strong cryptographic algorithms (AES-256) with customer-managed keys.",
+    "rules_mapped": ["RR-COS-003"]
+  },
+  {
+    "control_id": "DSP-17",
+    "domain": "Data Security & Privacy Lifecycle Management",
+    "title": "Cryptographic Key Lifecycle Management",
+    "description": "Maintain full customer control over cryptographic root keys using dedicated Hardware Security Module (HSM) services (IBM Key Protect).",
+    "rules_mapped": ["RR-COS-003", "RR-IAM-004"]
+  },
+  {
+    "control_id": "LOG-01",
+    "domain": "Logging and Monitoring",
+    "title": "Audit Trail Provisioning & Region Coverage",
+    "description": "Activity logging must be systematically activated across all operational cloud regions to record identity transactions and management operations.",
+    "rules_mapped": ["RR-COS-005", "RR-TRK-001"]
+  },
+  {
+    "control_id": "LOG-02",
+    "domain": "Logging and Monitoring",
+    "title": "Audit Log Scope & Integrity",
+    "description": "Ensure cloud audit logs capture all administrative API transactions and cannot be altered or disabled by unauthorized entities.",
+    "rules_mapped": ["RR-TRK-001"]
+  },
+  {
+    "control_id": "LOG-04",
+    "domain": "Logging and Monitoring",
+    "title": "Immutable Log Storage & Archiving",
+    "description": "Forward activity logs to an immutable storage target (IBM Cloud Object Storage) for guaranteed regulatory retention.",
+    "rules_mapped": ["RR-COS-005", "RR-TRK-002"]
+  },
+  {
+    "control_id": "SEF-02",
+    "domain": "Security Incident Management",
+    "title": "Security Incident Detection & Alerting",
+    "description": "Configure real-time notifications for anomalous or high-impact security misconfiguration events across cloud infrastructure.",
+    "rules_mapped": ["RR-TRK-003"]
+  },
+  {
+    "control_id": "AIS-04",
+    "domain": "Application & Interface Security",
+    "title": "API & Interface Perimeter Protection",
+    "description": "Prevent public exposure of web management portals and constrain CORS headers to validated origins.",
+    "rules_mapped": ["RR-COS-002", "RR-VPC-005", "RR-IAM-003"]
+  },
+  {
+    "control_id": "BCR-01",
+    "domain": "Business Continuity & Operational Resilience",
+    "title": "Business Continuity & Disaster Recovery Controls",
+    "description": "Implement data replication, object versioning, and backup protections to ensure rapid recovery from destructive ransomware incidents.",
+    "rules_mapped": ["RR-COS-004"]
+  }
+]

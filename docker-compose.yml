@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  risk-radar:
+    build: .
+    container_name: risk-radar-cspm
+    ports:
+      - "5000:5000"
+    environment:
+      - IBMCLOUD_API_KEY=${IBMCLOUD_API_KEY:-}
+      - IBMCLOUD_REGION=${IBMCLOUD_REGION:-us-south}
+      - SCANNER_MODE=${SCANNER_MODE:-SIMULATED_CLOUD_LAB}
+      - SECRET_KEY=risk-radar-production-secret-key-2026
+    volumes:
+      - ./backend/reports_output:/app/backend/reports_output
+      - ./backend/risk_radar.db:/app/backend/risk_radar.db
+    restart: unless-stopped

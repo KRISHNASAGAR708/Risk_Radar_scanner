@@ -1,0 +1,97 @@
+[
+  {
+    "rule_id": "RR-COS-001",
+    "title": "IBM Cloud Object Storage Bucket is Publicly Accessible",
+    "service": "COS",
+    "resource_type": "bucket",
+    "severity": "CRITICAL",
+    "cvss_score": 9.8,
+    "description": "The IBM Cloud Object Storage bucket has public read or write access granted via ACLs or Anonymous Public Access policies, allowing unauthorized parties on the internet to list, download, or tamper with stored objects.",
+    "rationale": "Public buckets are one of the most common causes of massive cloud data breaches, allowing unauthenticated attackers to harvest sensitive customer documents, proprietary databases, and internal credentials.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.9.5.1", "CLD.12.1.5", "CLD.13.1.4"],
+      "csa_star": ["DSP-01", "DSP-07", "IVS-06"]
+    },
+    "remediation": {
+      "summary": "Revoke public ACL grants and enforce Public Access Prevention on the IBM Cloud Object Storage bucket.",
+      "ibmcloud_cli": "ibmcloud cos bucket-acl-put --bucket <BUCKET_NAME> --acl private\nibmcloud cos public-access-block-put --bucket <BUCKET_NAME> --public-access-block-configuration '{\"BlockPublicAcls\": true, \"IgnorePublicAcls\": true, \"BlockPublicPolicy\": true, \"RestrictPublicBuckets\": true}'",
+      "console_steps": "1. Log in to the IBM Cloud Console.\n2. Navigate to Cloud Object Storage > Buckets.\n3. Select the affected bucket > Access policies.\n4. Ensure Public Access is set to 'Disabled' and remove any 'AllUsers' grantee grants."
+    }
+  },
+  {
+    "rule_id": "RR-COS-002",
+    "title": "IBM Cloud Object Storage Bucket Allows Permissive CORS Wildcard",
+    "service": "COS",
+    "resource_type": "bucket",
+    "severity": "HIGH",
+    "cvss_score": 7.5,
+    "description": "Cross-Origin Resource Sharing (CORS) rules on the bucket allow wildcard origin ('*'), permitting cross-origin web requests from any domain on the internet.",
+    "rationale": "Malicious websites visited by an authenticated user can execute unauthorized cross-origin requests against the storage bucket to exfiltrate confidential data.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.9.5.1", "CLD.13.1.4"],
+      "csa_star": ["AIS-04", "IVS-06"]
+    },
+    "remediation": {
+      "summary": "Restrict CORS AllowedOrigins to only explicitly trusted corporate and web domain names.",
+      "ibmcloud_cli": "ibmcloud cos bucket-cors-put --bucket <BUCKET_NAME> --cors-configuration '{\"CORSRules\": [{\"AllowedOrigins\": [\"https://trusted.company.com\"], \"AllowedMethods\": [\"GET\"], \"AllowedHeaders\": [\"Authorization\"]}]}'",
+      "console_steps": "1. Open the bucket in IBM Cloud Object Storage.\n2. Go to the Configuration tab.\n3. Under CORS configuration, replace '*' with your specific trusted origin domain."
+    }
+  },
+  {
+    "rule_id": "RR-COS-003",
+    "title": "IBM Cloud Object Storage Bucket Does Not Use Customer-Managed Encryption (SSE-KP)",
+    "service": "COS",
+    "resource_type": "bucket",
+    "severity": "MEDIUM",
+    "cvss_score": 5.3,
+    "description": "The bucket uses default provider-managed encryption keys instead of IBM Key Protect or Hyper Protect Crypto Services customer-managed root keys (SSE-KP).",
+    "rationale": "Customer-managed encryption ensures cryptographic erasure capabilities, compliance with key lifecycle management guidelines, and zero-trust data protection against provider insider threats.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.8.1.5", "CLD.12.1.5"],
+      "csa_star": ["DSP-08", "DSP-17"]
+    },
+    "remediation": {
+      "summary": "Associate the bucket with an IBM Key Protect customer root key (CRK) for hardware-secured envelope encryption.",
+      "ibmcloud_cli": "ibmcloud cos bucket-create --bucket <BUCKET_NAME> --ibm-sse-kp-encryption-algorithm '256' --ibm-sse-kp-customer-root-key-crn <KEY_PROTECT_CRN>",
+      "console_steps": "1. In IBM Cloud Console, create or select an IBM Key Protect instance.\n2. Generate a 256-bit Root Key.\n3. In COS bucket configuration, enable 'Customer-Managed Encryption' and select the Key Protect Root Key."
+    }
+  },
+  {
+    "rule_id": "RR-COS-004",
+    "title": "IBM Cloud Object Storage Bucket Lacks Object Versioning",
+    "service": "COS",
+    "resource_type": "bucket",
+    "severity": "MEDIUM",
+    "cvss_score": 5.0,
+    "description": "Object Versioning is suspended or disabled on the storage bucket, leaving objects vulnerable to immediate overwrite or permanent unrecoverable deletion.",
+    "rationale": "Ransomware operators and malicious insiders routinely overwrite or purge critical backups in unversioned cloud storage buckets to maximize operational extortion.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.12.1.5"],
+      "csa_star": ["BCR-01", "DSP-03"]
+    },
+    "remediation": {
+      "summary": "Enable Object Versioning on the IBM Cloud Object Storage bucket.",
+      "ibmcloud_cli": "ibmcloud cos bucket-versioning-put --bucket <BUCKET_NAME> --versioning-configuration '{\"Status\": \"Enabled\"}'",
+      "console_steps": "1. Navigate to the bucket in IBM Cloud Object Storage.\n2. Select Configuration tab > Object Versioning.\n3. Toggle Versioning status to 'Enabled'."
+    }
+  },
+  {
+    "rule_id": "RR-COS-005",
+    "title": "IBM Cloud Object Storage Read Data Event Auditing Disabled",
+    "service": "COS",
+    "resource_type": "bucket",
+    "severity": "LOW",
+    "cvss_score": 3.7,
+    "description": "Activity tracking for read data events is not enabled on the storage bucket, preventing security teams from detecting data exfiltration spikes or unauthorized access attempts.",
+    "rationale": "Without read-level access telemetry, security forensic investigators cannot prove whether sensitive data assets were downloaded during a breach incident.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.12.4.5"],
+      "csa_star": ["LOG-01", "LOG-04"]
+    },
+    "remediation": {
+      "summary": "Configure bucket activity tracking to forward object read and write data events to IBM Cloud Activity Tracker.",
+      "ibmcloud_cli": "ibmcloud cos bucket-activity-tracking-put --bucket <BUCKET_NAME> --activity-tracker-crn <ATRACKER_CRN> --read-data-events true --write-data-events true",
+      "console_steps": "1. Select bucket in IBM Cloud Console > Configuration.\n2. Scroll to Activity Tracking.\n3. Check 'Track Read Data Events' and select your Activity Tracker target."
+    }
+  }
+]

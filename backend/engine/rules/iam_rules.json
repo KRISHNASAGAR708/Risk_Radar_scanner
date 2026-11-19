@@ -1,0 +1,97 @@
+[
+  {
+    "rule_id": "RR-IAM-001",
+    "title": "IAM Access Policy Grants Wildcard Administrator Role Across All Services",
+    "service": "IAM",
+    "resource_type": "iam_policy",
+    "severity": "CRITICAL",
+    "cvss_score": 9.9,
+    "description": "An IAM policy binds the Administrator role across all cloud services (serviceType: *) with account-wide scope, granting complete unrestricted administrative compromise authority.",
+    "rationale": "Overprivileged administrator policies violate the Principle of Least Privilege. If credentials assigned this policy are compromised, the adversary gains total control over billing, data storage, networking, and security logging.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.6.3.1", "CLD.9.5.1", "CLD.12.1.5"],
+      "csa_star": ["IAM-01", "IAM-02", "IAM-05"]
+    },
+    "remediation": {
+      "summary": "Scope the IAM policy to explicit target services and resource groups rather than account-wide wildcards (*).",
+      "ibmcloud_cli": "ibmcloud iam user-policy-delete <IAM_ID> <POLICY_ID> --force\nibmcloud iam user-policy-create <IAM_ID> --roles Viewer,Operator --service-name cloud-object-storage",
+      "console_steps": "1. In IBM Cloud Console, open Manage > Access (IAM) > Users (or Access Groups).\n2. Select the assigned identity > Access policies.\n3. Delete the account-wide wildcard policy.\n4. Re-assign permissions strictly constrained to required services and resource groups."
+    }
+  },
+  {
+    "rule_id": "RR-IAM-002",
+    "title": "Account-Level Multi-Factor Authentication (MFA) Not Enforced",
+    "service": "IAM",
+    "resource_type": "iam_account_settings",
+    "severity": "CRITICAL",
+    "cvss_score": 9.0,
+    "description": "Multi-Factor Authentication (MFA) is set to 'NONE' at the IBM Cloud account level, allowing users to authenticate using only static passwords without a secondary verification factor.",
+    "rationale": "Single-factor password authentication exposes enterprise cloud infrastructure to credential stuffing, phishing, and password reuse breaches.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.6.3.1", "CLD.9.5.1"],
+      "csa_star": ["IAM-03", "IAM-05"]
+    },
+    "remediation": {
+      "summary": "Enforce MFA for all users in the account using IBM Cloud Identity settings (TOTP or Security Key).",
+      "ibmcloud_cli": "ibmcloud iam account-mfa-set TOTP4ALL --force",
+      "console_steps": "1. Go to Manage > Access (IAM) in IBM Cloud Console.\n2. Click Settings in the left sidebar.\n3. Under 'Authentication', set Multi-Factor Authentication (MFA) to 'For all users (TOTP4ALL)'."
+    }
+  },
+  {
+    "rule_id": "RR-IAM-003",
+    "title": "Service ID Possesses Excessive Manager Privileges Across Resource Groups",
+    "service": "IAM",
+    "resource_type": "iam_policy",
+    "severity": "HIGH",
+    "cvss_score": 8.1,
+    "description": "A programmatic Service ID (often used by automated CI/CD pipelines) is granted Manager/Operator roles with wildcard resource group bindings.",
+    "rationale": "Automated pipeline keys stored in git repositories or build environments can leak. An unconstrained Service ID allows attackers to pivot across distinct security zones.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.9.5.1", "CLD.12.1.5"],
+      "csa_star": ["IAM-02", "IAM-05", "AIS-04"]
+    },
+    "remediation": {
+      "summary": "Bind Service IDs only to the specific resource group of their workload and restrict roles to the minimum required.",
+      "ibmcloud_cli": "ibmcloud iam service-policy-update <SERVICE_ID> <POLICY_ID> --roles Writer --resource-group-id <TARGET_RG_ID>",
+      "console_steps": "1. Navigate to Manage > Access (IAM) > Service IDs.\n2. Select the Service ID > Access Policies.\n3. Edit the policy to specify the exact Resource Group instead of 'All Resource Groups'."
+    }
+  },
+  {
+    "rule_id": "RR-IAM-004",
+    "title": "Dormant or Unrotated IAM API Key Exceeds 90 Days Age",
+    "service": "IAM",
+    "resource_type": "iam_account_settings",
+    "severity": "MEDIUM",
+    "cvss_score": 6.2,
+    "description": "Active IAM API keys have been detected with creation dates older than 90 days without cryptographic key rotation.",
+    "rationale": "Static long-lived API keys accumulate exposure risks across multiple developers, logs, workstation caches, and continuous integration runners.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.9.5.1"],
+      "csa_star": ["IAM-04", "DSP-17"]
+    },
+    "remediation": {
+      "summary": "Rotate long-lived API keys and implement automated secret management (e.g., IBM Secrets Manager).",
+      "ibmcloud_cli": "ibmcloud iam api-key-create <NEW_KEY_NAME> -d 'Rotated key' --file key.json\nibmcloud iam api-key-delete <OLD_KEY_ID> --force",
+      "console_steps": "1. In IBM Cloud Console, open Manage > Access (IAM) > API keys.\n2. Generate a new API key and update applications.\n3. Delete the stale API key."
+    }
+  },
+  {
+    "rule_id": "RR-IAM-005",
+    "title": "IAM Allowed IP Address Restrictions Not Configured",
+    "service": "IAM",
+    "resource_type": "iam_account_settings",
+    "severity": "LOW",
+    "cvss_score": 3.9,
+    "description": "The account does not enforce source IP address allowlisting for IAM user sessions and API calls.",
+    "rationale": "Without network origin controls, stolen cloud administrator credentials can be utilized from anywhere globally, including anonymized VPNs and Tor exit nodes.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.13.1.4"],
+      "csa_star": ["IAM-05", "IVS-06"]
+    },
+    "remediation": {
+      "summary": "Configure allowed IP address ranges for user login and administrative operations.",
+      "ibmcloud_cli": "ibmcloud iam account-settings-update --allowed-ip-addresses <OFFICE_OR_VPN_PUBLIC_IPS>",
+      "console_steps": "1. Go to Manage > Access (IAM) > Settings.\n2. In 'IP address restrictions', specify your enterprise egress CIDR ranges."
+    }
+  }
+]

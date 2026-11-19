@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Radar – IBM Cloud CSPM Security Audit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        code, pre, .font-mono { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+<body class="bg-[#0B0F19] text-slate-100 min-h-screen py-10 px-4 md:px-12">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-slate-800 mb-8 gap-4">
+            <div>
+                <div class="flex items-center gap-3 mb-1">
+                    <span class="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">RISK RADAR</span>
+                    <span class="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider" style="background-color: #8B5CF620; color: #8B5CF6; border: 1px solid #8B5CF640;">
+                        ● SIMULATED CLOUD LAB
+                    </span>
+                </div>
+                <h1 class="text-2xl font-bold text-slate-100">Automated Cloud Misconfiguration & Compliance Audit</h1>
+                <p class="text-xs text-slate-400 mt-1">IBM Cloud CSPM | ISO 27017 & CSA STAR Assessment</p>
+            </div>
+            <div class="text-right text-xs text-slate-400 font-mono">
+                <p>Account: <span class="text-slate-200">demo-acct-849302-ibm</span></p>
+                <p>Region: <span class="text-slate-200">us-south</span></p>
+                <p>Generated: <span class="text-slate-200">2026-11-18 17:07 UTC</span></p>
+            </div>
+        </div>
+
+        <!-- Metric Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Posture Score</p>
+                <div class="flex items-baseline gap-2">
+                    <span class="text-3xl font-extrabold text-red-400">0.0%</span>
+                    <span class="text-xs font-bold text-slate-400">Grade F</span>
+                </div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Critical Findings</p>
+                <div class="flex items-baseline gap-2">
+                    <span class="text-3xl font-extrabold text-red-400">11</span>
+                    <span class="text-xs text-slate-400">of 27 total</span>
+                </div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">ISO 27017</p>
+                <div class="flex items-baseline gap-2">
+                    <span class="text-3xl font-extrabold text-cyan-400">0.0%</span>
+                    <span class="text-xs text-slate-400">Compliant</span>
+                </div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">CSA STAR (CCM)</p>
+                <div class="flex items-baseline gap-2">
+                    <span class="text-3xl font-extrabold text-purple-400">0.0%</span>
+                    <span class="text-xs text-slate-400">Compliant</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Findings List -->
+        <div class="mb-12">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-slate-100">Vulnerability Findings & Remediation Guidance</h2>
+                <span class="text-xs text-slate-400 font-mono">27 Findings Total</span>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-red-500/10 text-red-400 border-red-500/30">CRITICAL</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-COS-001</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">COS</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">9.8</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">IBM Cloud Object Storage Bucket is Publicly Accessible</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">fintech-raw-analytics-data</span> (bucket)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">The IBM Cloud Object Storage bucket has public read or write access granted via ACLs or Anonymous Public Access policies, allowing unauthorized parties on the internet to list, download, or tamper with stored objects.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Public buckets are one of the most common causes of massive cloud data breaches, allowing unauthenticated attackers to harvest sensitive customer documents, proprietary databases, and internal credentials.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Revoke public ACL grants and enforce Public Access Prevention on the IBM Cloud Object Storage bucket.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud cos bucket-acl-put --bucket fintech-raw-analytics-data --acl private
+ibmcloud cos public-access-block-put --bucket fintech-raw-analytics-data --public-access-block-configuration '{"BlockPublicAcls": true, "IgnorePublicAcls": true, "BlockPublicPolicy": true, "RestrictPublicBuckets": true}'</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.1.5</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.13.1.4</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-01</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-07</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-06</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-orange-500/10 text-orange-400 border-orange-500/30">HIGH</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-COS-002</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">COS</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">7.5</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">IBM Cloud Object Storage Bucket Allows Permissive CORS Wildcard</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">fintech-raw-analytics-data</span> (bucket)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">Cross-Origin Resource Sharing (CORS) rules on the bucket allow wildcard origin ('*'), permitting cross-origin web requests from any domain on the internet.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Malicious websites visited by an authenticated user can execute unauthorized cross-origin requests against the storage bucket to exfiltrate confidential data.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Restrict CORS AllowedOrigins to only explicitly trusted corporate and web domain names.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud cos bucket-cors-put --bucket fintech-raw-analytics-data --cors-configuration '{"CORSRules": [{"AllowedOrigins": ["https://trusted.company.com"], "AllowedMethods": ["GET"], "AllowedHeaders": ["Authorization"]}]}'</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.13.1.4</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">AIS-04</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-06</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-amber-500/10 text-amber-400 border-amber-500/30">MEDIUM</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-COS-003</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">COS</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">5.3</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">IBM Cloud Object Storage Bucket Does Not Use Customer-Managed Encryption (SSE-KP)</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">fintech-raw-analytics-data</span> (bucket)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">The bucket uses default provider-managed encryption keys instead of IBM Key Protect or Hyper Protect Crypto Services customer-managed root keys (SSE-KP).</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Customer-managed encryption ensures cryptographic erasure capabilities, compliance with key lifecycle management guidelines, and zero-trust data protection against provider insider threats.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Associate the bucket with an IBM Key Protect customer root key (CRK) for hardware-secured envelope encryption.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud cos bucket-create --bucket fintech-raw-analytics-data --ibm-sse-kp-encryption-algorithm '256' --ibm-sse-kp-customer-root-key-crn <KEY_PROTECT_CRN></code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.8.1.5</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.1.5</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-08</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-17</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-amber-500/10 text-amber-400 border-amber-500/30">MEDIUM</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-COS-004</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">COS</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">5.0</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">IBM Cloud Object Storage Bucket Lacks Object Versioning</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">fintech-raw-analytics-data</span> (bucket)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">Object Versioning is suspended or disabled on the storage bucket, leaving objects vulnerable to immediate overwrite or permanent unrecoverable deletion.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Ransomware operators and malicious insiders routinely overwrite or purge critical backups in unversioned cloud storage buckets to maximize operational extortion.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Enable Object Versioning on the IBM Cloud Object Storage bucket.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud cos bucket-versioning-put --bucket fintech-raw-analytics-data --versioning-configuration '{"Status": "Enabled"}'</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.1.5</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">BCR-01</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-03</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-blue-500/10 text-blue-400 border-blue-500/30">LOW</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-COS-005</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">COS</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">3.7</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">IBM Cloud Object Storage Read Data Event Auditing Disabled</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">fintech-raw-analytics-data</span> (bucket)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">Activity tracking for read data events is not enabled on the storage bucket, preventing security teams from detecting data exfiltration spikes or unauthorized access attempts.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Without read-level access telemetry, security forensic investigators cannot prove whether sensitive data assets were downloaded during a breach incident.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Configure bucket activity tracking to forward object read and write data events to IBM Cloud Activity Tracker.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud cos bucket-activity-tracking-put --bucket fintech-raw-analytics-data --activity-tracker-crn <ATRACKER_CRN> --read-data-events true --write-data-events true</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.4.5</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">LOG-01</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">LOG-04</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-amber-500/10 text-amber-400 border-amber-500/30">MEDIUM</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-COS-003</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">COS</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">5.3</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">IBM Cloud Object Storage Bucket Does Not Use Customer-Managed Encryption (SSE-KP)</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">cust-pii-records-backup</span> (bucket)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">The bucket uses default provider-managed encryption keys instead of IBM Key Protect or Hyper Protect Crypto Services customer-managed root keys (SSE-KP).</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Customer-managed encryption ensures cryptographic erasure capabilities, compliance with key lifecycle management guidelines, and zero-trust data protection against provider insider threats.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Associate the bucket with an IBM Key Protect customer root key (CRK) for hardware-secured envelope encryption.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud cos bucket-create --bucket cust-pii-records-backup --ibm-sse-kp-encryption-algorithm '256' --ibm-sse-kp-customer-root-key-crn <KEY_PROTECT_CRN></code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.8.1.5</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.1.5</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-08</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-17</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-amber-500/10 text-amber-400 border-amber-500/30">MEDIUM</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-COS-004</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">COS</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">5.0</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">IBM Cloud Object Storage Bucket Lacks Object Versioning</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">cust-pii-records-backup</span> (bucket)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">Object Versioning is suspended or disabled on the storage bucket, leaving objects vulnerable to immediate overwrite or permanent unrecoverable deletion.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Ransomware operators and malicious insiders routinely overwrite or purge critical backups in unversioned cloud storage buckets to maximize operational extortion.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Enable Object Versioning on the IBM Cloud Object Storage bucket.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud cos bucket-versioning-put --bucket cust-pii-records-backup --versioning-configuration '{"Status": "Enabled"}'</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.1.5</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">BCR-01</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-03</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-blue-500/10 text-blue-400 border-blue-500/30">LOW</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-COS-005</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">COS</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">3.7</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">IBM Cloud Object Storage Read Data Event Auditing Disabled</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">cust-pii-records-backup</span> (bucket)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">Activity tracking for read data events is not enabled on the storage bucket, preventing security teams from detecting data exfiltration spikes or unauthorized access attempts.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Without read-level access telemetry, security forensic investigators cannot prove whether sensitive data assets were downloaded during a breach incident.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Configure bucket activity tracking to forward object read and write data events to IBM Cloud Activity Tracker.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud cos bucket-activity-tracking-put --bucket cust-pii-records-backup --activity-tracker-crn <ATRACKER_CRN> --read-data-events true --write-data-events true</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.4.5</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">LOG-01</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">LOG-04</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-red-500/10 text-red-400 border-red-500/30">CRITICAL</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-COS-001</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">COS</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">9.8</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">IBM Cloud Object Storage Bucket is Publicly Accessible</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">public-web-assets-static</span> (bucket)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">The IBM Cloud Object Storage bucket has public read or write access granted via ACLs or Anonymous Public Access policies, allowing unauthorized parties on the internet to list, download, or tamper with stored objects.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Public buckets are one of the most common causes of massive cloud data breaches, allowing unauthenticated attackers to harvest sensitive customer documents, proprietary databases, and internal credentials.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Revoke public ACL grants and enforce Public Access Prevention on the IBM Cloud Object Storage bucket.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud cos bucket-acl-put --bucket public-web-assets-static --acl private
+ibmcloud cos public-access-block-put --bucket public-web-assets-static --public-access-block-configuration '{"BlockPublicAcls": true, "IgnorePublicAcls": true, "BlockPublicPolicy": true, "RestrictPublicBuckets": true}'</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.1.5</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.13.1.4</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-01</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-07</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-06</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-amber-500/10 text-amber-400 border-amber-500/30">MEDIUM</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-COS-003</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">COS</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">5.3</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">IBM Cloud Object Storage Bucket Does Not Use Customer-Managed Encryption (SSE-KP)</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">public-web-assets-static</span> (bucket)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">The bucket uses default provider-managed encryption keys instead of IBM Key Protect or Hyper Protect Crypto Services customer-managed root keys (SSE-KP).</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Customer-managed encryption ensures cryptographic erasure capabilities, compliance with key lifecycle management guidelines, and zero-trust data protection against provider insider threats.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Associate the bucket with an IBM Key Protect customer root key (CRK) for hardware-secured envelope encryption.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud cos bucket-create --bucket public-web-assets-static --ibm-sse-kp-encryption-algorithm '256' --ibm-sse-kp-customer-root-key-crn <KEY_PROTECT_CRN></code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.8.1.5</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.1.5</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-08</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-17</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-blue-500/10 text-blue-400 border-blue-500/30">LOW</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-COS-005</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">COS</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">3.7</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">IBM Cloud Object Storage Read Data Event Auditing Disabled</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">public-web-assets-static</span> (bucket)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">Activity tracking for read data events is not enabled on the storage bucket, preventing security teams from detecting data exfiltration spikes or unauthorized access attempts.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Without read-level access telemetry, security forensic investigators cannot prove whether sensitive data assets were downloaded during a breach incident.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Configure bucket activity tracking to forward object read and write data events to IBM Cloud Activity Tracker.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud cos bucket-activity-tracking-put --bucket public-web-assets-static --activity-tracker-crn <ATRACKER_CRN> --read-data-events true --write-data-events true</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.4.5</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">LOG-01</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">LOG-04</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-amber-500/10 text-amber-400 border-amber-500/30">MEDIUM</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-VPC-006</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">VPC</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">6.0</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">VPC Classic Access Enabled</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">vpc-partner-integration-dev</span> (vpc)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">The VPC has Classic Infrastructure Access enabled, establishing a bridge between modern Gen 2 VPC isolation boundaries and legacy IBM Cloud Classic bare-metal resources.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Classic Access breaks standard zero-trust software-defined network isolation, enabling lateral traversal from legacy unsegmented subnets into high-security VPC tiers.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Deploy dedicated VPCs without Classic Access enabled for workloads requiring strict network isolation.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud is vpc-create <VPC_NAME> --classic-access false</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.13.1.4</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-01</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-06</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-red-500/10 text-red-400 border-red-500/30">CRITICAL</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-VPC-001</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">VPC</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">9.8</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">Security Group Allows Unrestricted Inbound SSH (Port 22)</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">sg-dmz-external-web</span> (security_group)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">An inbound firewall rule permits SSH (TCP port 22) connections from anywhere on the internet (0.0.0.0/0), exposing virtual server instances directly to brute-force attacks and zero-day remote exploit payloads.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Automated threat botnets continuously scan IPv4 address space for open SSH services to launch dictionary credential attacks, key harvesting, and botnet enrollment.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Remove 0.0.0.0/0 inbound rules for port 22 and restrict SSH management exclusively to a dedicated VPN gateway, IBM Cloud Direct Link, or internal bastion host.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud is security-group-rule-delete r006-sg-dmz-external <RULE_ID> --force
+ibmcloud is security-group-rule-add r006-sg-dmz-external inbound tcp --port-min 22 --port-max 22 --remote <CORPORATE_BASTION_CIDR></code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.2</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.13.1.4</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-06</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-07</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IAM-05</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-red-500/10 text-red-400 border-red-500/30">CRITICAL</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-VPC-002</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">VPC</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">9.8</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">Security Group Allows Unrestricted Inbound RDP (Port 3389)</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">sg-bastion-management</span> (security_group)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">An inbound rule allows Microsoft Remote Desktop Protocol (TCP port 3389) from 0.0.0.0/0, leaving Windows Virtual Server instances directly vulnerable to remote code execution and credential spraying.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Internet-exposed RDP is the primary initial access vector documented in enterprise ransomware incidents (e.g. BlueKeep, DejaBlue).</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Delete 0.0.0.0/0 inbound RDP rules. Route administrative RDP traffic over IBM Cloud Client-to-Site VPN or Private Endpoints only.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud is security-group-rule-delete r006-sg-bastion-mgmt <RULE_ID> --force</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.2</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.13.1.4</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-06</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-07</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IAM-05</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-orange-500/10 text-orange-400 border-orange-500/30">HIGH</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-VPC-005</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">VPC</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">7.5</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">Security Group Exposes Administrative Web Portals to Public Internet</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">sg-bastion-management</span> (security_group)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">Inbound rules allow public internet traffic to administrative web management ports such as 8080, 8443, or 9090 from 0.0.0.0/0.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Exposed management interfaces provide attackers access to admin login portals, debug consoles, and unpatched application dashboard interfaces.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Restrict access to administration ports to specific corporate IP address ranges or use IBM Cloud App ID behind an Application Load Balancer.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud is security-group-rule-delete r006-sg-bastion-mgmt <RULE_ID> --force</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.2</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.13.1.4</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">AIS-04</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-06</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-red-500/10 text-red-400 border-red-500/30">CRITICAL</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-VPC-003</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">VPC</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">9.5</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">Security Group Exposes Database Ports to the Public Internet</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">sg-core-db-cluster</span> (security_group)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">Database management ports (MySQL 3306, PostgreSQL 5432, MongoDB 27017, MSSQL 1433, Oracle 1521, or Redis 6379) are open to 0.0.0.0/0.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Direct internet exposure of relational and NoSQL databases enables remote unauthenticated attackers to exploit database vulnerabilities, dump tables, or install crypto-miners.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Restrict database security group ingress exclusively to the application subnet CIDR (e.g., 10.240.1.0/24) or application security group ID.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud is security-group-rule-delete r006-sg-core-db <RULE_ID> --force
+ibmcloud is security-group-rule-add r006-sg-core-db inbound tcp --port-min 3306 --port-max 3306 --remote <APP_SECURITY_GROUP_ID></code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.1.5</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.13.1.4</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-06</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-07</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-red-500/10 text-red-400 border-red-500/30">CRITICAL</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-VPC-001</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">VPC</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">9.8</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">Security Group Allows Unrestricted Inbound SSH (Port 22)</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">default-vpc-prod-sg</span> (security_group)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">An inbound firewall rule permits SSH (TCP port 22) connections from anywhere on the internet (0.0.0.0/0), exposing virtual server instances directly to brute-force attacks and zero-day remote exploit payloads.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Automated threat botnets continuously scan IPv4 address space for open SSH services to launch dictionary credential attacks, key harvesting, and botnet enrollment.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Remove 0.0.0.0/0 inbound rules for port 22 and restrict SSH management exclusively to a dedicated VPN gateway, IBM Cloud Direct Link, or internal bastion host.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud is security-group-rule-delete r006-sg-default-vpc <RULE_ID> --force
+ibmcloud is security-group-rule-add r006-sg-default-vpc inbound tcp --port-min 22 --port-max 22 --remote <CORPORATE_BASTION_CIDR></code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.2</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.13.1.4</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-06</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-07</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IAM-05</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-red-500/10 text-red-400 border-red-500/30">CRITICAL</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-VPC-002</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">VPC</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">9.8</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">Security Group Allows Unrestricted Inbound RDP (Port 3389)</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">default-vpc-prod-sg</span> (security_group)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">An inbound rule allows Microsoft Remote Desktop Protocol (TCP port 3389) from 0.0.0.0/0, leaving Windows Virtual Server instances directly vulnerable to remote code execution and credential spraying.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Internet-exposed RDP is the primary initial access vector documented in enterprise ransomware incidents (e.g. BlueKeep, DejaBlue).</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Delete 0.0.0.0/0 inbound RDP rules. Route administrative RDP traffic over IBM Cloud Client-to-Site VPN or Private Endpoints only.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud is security-group-rule-delete r006-sg-default-vpc <RULE_ID> --force</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.2</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.13.1.4</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-06</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-07</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IAM-05</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-red-500/10 text-red-400 border-red-500/30">CRITICAL</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-VPC-003</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">VPC</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">9.5</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">Security Group Exposes Database Ports to the Public Internet</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">default-vpc-prod-sg</span> (security_group)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">Database management ports (MySQL 3306, PostgreSQL 5432, MongoDB 27017, MSSQL 1433, Oracle 1521, or Redis 6379) are open to 0.0.0.0/0.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Direct internet exposure of relational and NoSQL databases enables remote unauthenticated attackers to exploit database vulnerabilities, dump tables, or install crypto-miners.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Restrict database security group ingress exclusively to the application subnet CIDR (e.g., 10.240.1.0/24) or application security group ID.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud is security-group-rule-delete r006-sg-default-vpc <RULE_ID> --force
+ibmcloud is security-group-rule-add r006-sg-default-vpc inbound tcp --port-min 3306 --port-max 3306 --remote <APP_SECURITY_GROUP_ID></code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.1.5</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.13.1.4</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-06</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-07</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-orange-500/10 text-orange-400 border-orange-500/30">HIGH</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-VPC-004</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">VPC</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">8.2</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">Default Security Group Inbound Rule Allows All Traffic (ANY:ANY)</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">default-vpc-prod-sg</span> (security_group)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">The default security group created automatically with the VPC contains an inbound rule allowing all protocols and all ports from 0.0.0.0/0.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Default security groups should never be used for production workloads and should default to zero-trust deny-all ingress to prevent newly launched network interfaces from accidental exposure.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Remove all inbound rules from the default security group and provision dedicated, workload-specific security groups instead.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud is security-group-rule-delete <DEFAULT_SG_ID> <RULE_ID> --force</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.13.1.4</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-06</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-07</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-red-500/10 text-red-400 border-red-500/30">CRITICAL</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-IAM-001</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">IAM</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">9.9</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">IAM Access Policy Grants Wildcard Administrator Role Across All Services</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">Wildcard administrator access granted to external consultant</span> (iam_policy)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">An IAM policy binds the Administrator role across all cloud services (serviceType: *) with account-wide scope, granting complete unrestricted administrative compromise authority.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Overprivileged administrator policies violate the Principle of Least Privilege. If credentials assigned this policy are compromised, the adversary gains total control over billing, data storage, networking, and security logging.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Scope the IAM policy to explicit target services and resource groups rather than account-wide wildcards (*).</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud iam user-policy-delete <IAM_ID> <POLICY_ID> --force
+ibmcloud iam user-policy-create <IAM_ID> --roles Viewer,Operator --service-name cloud-object-storage</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.6.3.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.1.5</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IAM-01</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IAM-02</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IAM-05</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-orange-500/10 text-orange-400 border-orange-500/30">HIGH</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-IAM-003</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">IAM</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">8.1</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">Service ID Possesses Excessive Manager Privileges Across Resource Groups</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">Service ID has Manager role with unconstrained resource group wildcards</span> (iam_policy)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">A programmatic Service ID (often used by automated CI/CD pipelines) is granted Manager/Operator roles with wildcard resource group bindings.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Automated pipeline keys stored in git repositories or build environments can leak. An unconstrained Service ID allows attackers to pivot across distinct security zones.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Bind Service IDs only to the specific resource group of their workload and restrict roles to the minimum required.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud iam service-policy-update <SERVICE_ID> <POLICY_ID> --roles Writer --resource-group-id <TARGET_RG_ID></code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.1.5</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IAM-02</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IAM-05</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">AIS-04</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-red-500/10 text-red-400 border-red-500/30">CRITICAL</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-IAM-002</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">IAM</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">9.0</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">Account-Level Multi-Factor Authentication (MFA) Not Enforced</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">IAM Global Account Security & MFA Configuration</span> (iam_account_settings)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">Multi-Factor Authentication (MFA) is set to 'NONE' at the IBM Cloud account level, allowing users to authenticate using only static passwords without a secondary verification factor.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Single-factor password authentication exposes enterprise cloud infrastructure to credential stuffing, phishing, and password reuse breaches.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Enforce MFA for all users in the account using IBM Cloud Identity settings (TOTP or Security Key).</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud iam account-mfa-set TOTP4ALL --force</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.6.3.1</span><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IAM-03</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IAM-05</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-amber-500/10 text-amber-400 border-amber-500/30">MEDIUM</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-IAM-004</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">IAM</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">6.2</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">Dormant or Unrotated IAM API Key Exceeds 90 Days Age</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">IAM Global Account Security & MFA Configuration</span> (iam_account_settings)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">Active IAM API keys have been detected with creation dates older than 90 days without cryptographic key rotation.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Static long-lived API keys accumulate exposure risks across multiple developers, logs, workstation caches, and continuous integration runners.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Rotate long-lived API keys and implement automated secret management (e.g., IBM Secrets Manager).</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud iam api-key-create <NEW_KEY_NAME> -d 'Rotated key' --file key.json
+ibmcloud iam api-key-delete <OLD_KEY_ID> --force</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.9.5.1</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IAM-04</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">DSP-17</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-blue-500/10 text-blue-400 border-blue-500/30">LOW</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-IAM-005</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">IAM</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">3.9</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">IAM Allowed IP Address Restrictions Not Configured</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">IAM Global Account Security & MFA Configuration</span> (iam_account_settings)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">The account does not enforce source IP address allowlisting for IAM user sessions and API calls.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Without network origin controls, stolen cloud administrator credentials can be utilized from anywhere globally, including anonymized VPNs and Tor exit nodes.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Configure allowed IP address ranges for user login and administrative operations.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud iam account-settings-update --allowed-ip-addresses <OFFICE_OR_VPN_PUBLIC_IPS></code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.13.1.4</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IAM-05</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">IVS-06</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-red-500/10 text-red-400 border-red-500/30">CRITICAL</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-TRK-001</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">ACTIVITY_TRACKER</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">8.9</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">Missing IBM Cloud Activity Tracker Route in Active Production Region</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">Activity Tracker Event Routing Configuration (us-south)</span> (activity_tracker_route)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">An active production region containing compute or storage assets lacks an active IBM Cloud Activity Tracker Event Route, causing control-plane and management API audit events to be lost.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Cloud audit trails are the primary source of truth for post-incident breach investigations. Attackers actively exploit regions without logging to execute covert modifications undetected.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Provision an Activity Tracker Event Route in all active regions to capture and forward audit logs.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud atracker route create --name <ROUTE_NAME> --target-ids <TARGET_ID> --locations <REGION></code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.4.5</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">LOG-01</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">LOG-02</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">SEF-04</span></div>
+                </div>
+            </div>
+            
+            <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 mb-4 hover:border-slate-700 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 text-xs font-bold rounded-md border bg-amber-500/10 text-amber-400 border-amber-500/30">MEDIUM</span>
+                        <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RR-TRK-003</span>
+                        <span class="text-xs font-semibold text-sky-400 uppercase tracking-wide">ACTIVITY_TRACKER</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">CVSS Score: <b class="text-slate-200">5.7</b></span>
+                </div>
+                <h3 class="text-base font-bold text-slate-100 mb-1">Critical Cloud Security Event Alerts Not Configured</h3>
+                <p class="text-xs text-slate-400 font-mono mb-3">Resource: <span class="text-slate-300">Activity Tracker Event Routing Configuration (us-south)</span> (activity_tracker_route)</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-slate-400 font-semibold mb-1">Vulnerability Description:</p>
+                        <p class="text-slate-300">Automated security alerts are not configured for critical administrative modifications, such as IAM policy deletion, security group rule changes, or bucket public access toggling.</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800/80">
+                        <p class="text-amber-400 font-semibold mb-1">Threat Rationale (Why Dangerous):</p>
+                        <p class="text-slate-300">Without real-time alerting, security operations centers cannot intervene in time to stop active cloud ransomware or credential abuse campaigns.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-3">
+                    <p class="text-emerald-400 font-semibold text-xs mb-1">Recommended Remediation:</p>
+                    <p class="text-slate-300 text-xs mb-2">Configure IBM Cloud Event Notifications integration to alert on IAM and network configuration tampering.</p>
+                    <pre class="p-2 rounded bg-slate-900 text-sky-300 text-xs font-mono overflow-x-auto border border-slate-800"><code>ibmcloud en destination-create --instance-id <EN_ID> --name secops-pager --type pagerduty</code></pre>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/60">
+                    <span class="text-xs text-slate-400 font-medium">Compliance:</span>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 mr-1">CLD.12.4.5</span></div>
+                    <div><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">SEF-02</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">SEF-04</span><span class="px-2 py-0.5 rounded text-xs bg-purple-950 text-purple-300 border border-purple-800 mr-1">LOG-03</span></div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Footer -->
+        <div class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+            <p>Risk Radar CSPM &bull; Cloud Computing & Cloud Security Major Project &bull; IBM Cloud Security Posture Management</p>
+        </div>
+    </div>
+</body>
+</html>

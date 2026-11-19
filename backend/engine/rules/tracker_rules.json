@@ -1,0 +1,59 @@
+[
+  {
+    "rule_id": "RR-TRK-001",
+    "title": "Missing IBM Cloud Activity Tracker Route in Active Production Region",
+    "service": "ACTIVITY_TRACKER",
+    "resource_type": "activity_tracker_route",
+    "severity": "CRITICAL",
+    "cvss_score": 8.9,
+    "description": "An active production region containing compute or storage assets lacks an active IBM Cloud Activity Tracker Event Route, causing control-plane and management API audit events to be lost.",
+    "rationale": "Cloud audit trails are the primary source of truth for post-incident breach investigations. Attackers actively exploit regions without logging to execute covert modifications undetected.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.12.4.5"],
+      "csa_star": ["LOG-01", "LOG-02", "SEF-04"]
+    },
+    "remediation": {
+      "summary": "Provision an Activity Tracker Event Route in all active regions to capture and forward audit logs.",
+      "ibmcloud_cli": "ibmcloud atracker route create --name <ROUTE_NAME> --target-ids <TARGET_ID> --locations <REGION>",
+      "console_steps": "1. Navigate to Observability > Activity Tracker in IBM Cloud Console.\n2. Click 'Routing' > 'Create route'.\n3. Select your production region and link to your audit logging target."
+    }
+  },
+  {
+    "rule_id": "RR-TRK-002",
+    "title": "Activity Tracker Audit Logs Not Archived to Cloud Object Storage",
+    "service": "ACTIVITY_TRACKER",
+    "resource_type": "activity_tracker_route",
+    "severity": "HIGH",
+    "cvss_score": 7.4,
+    "description": "Activity Tracker event stream is not targeted to an IBM Cloud Object Storage bucket for immutable long-term archive retention.",
+    "rationale": "Regulatory compliance standards (ISO 27017, SOC 2, HIPAA, PCI-DSS) mandate minimum 1-year to 7-year audit log preservation with WORM (Write Once, Read Many) retention locks.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.12.4.5"],
+      "csa_star": ["LOG-04", "LOG-05"]
+    },
+    "remediation": {
+      "summary": "Create an immutable COS target for Activity Tracker and enable retention lock.",
+      "ibmcloud_cli": "ibmcloud atracker target create --name cos-audit-target --type cloud_object_storage --bucket-name <COS_LOG_BUCKET> --endpoint <COS_ENDPOINT>",
+      "console_steps": "1. Open Activity Tracker > Targets.\n2. Add target of type 'Cloud Object Storage'.\n3. Bind target to your dedicated audit logs COS bucket."
+    }
+  },
+  {
+    "rule_id": "RR-TRK-003",
+    "title": "Critical Cloud Security Event Alerts Not Configured",
+    "service": "ACTIVITY_TRACKER",
+    "resource_type": "activity_tracker_route",
+    "severity": "MEDIUM",
+    "cvss_score": 5.7,
+    "description": "Automated security alerts are not configured for critical administrative modifications, such as IAM policy deletion, security group rule changes, or bucket public access toggling.",
+    "rationale": "Without real-time alerting, security operations centers cannot intervene in time to stop active cloud ransomware or credential abuse campaigns.",
+    "compliance_mappings": {
+      "iso27017": ["CLD.12.4.5"],
+      "csa_star": ["SEF-02", "SEF-04", "LOG-03"]
+    },
+    "remediation": {
+      "summary": "Configure IBM Cloud Event Notifications integration to alert on IAM and network configuration tampering.",
+      "ibmcloud_cli": "ibmcloud en destination-create --instance-id <EN_ID> --name secops-pager --type pagerduty",
+      "console_steps": "1. In IBM Cloud Console, open Event Notifications.\n2. Connect Activity Tracker stream as an event source.\n3. Create notification rules for IAM and VPC security events."
+    }
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "control_id": "CLD.6.3.1",
+    "clause": "6.3.1",
+    "title": "Information Security Awareness, Education and Training for Cloud",
+    "domain": "Organization of Information Security",
+    "description": "Ensure strong identity verification mechanisms including multi-factor authentication (MFA) and least privilege are enforced across cloud administrative accounts.",
+    "rules_mapped": ["RR-IAM-001", "RR-IAM-002"]
+  },
+  {
+    "control_id": "CLD.8.1.5",
+    "clause": "8.1.5",
+    "title": "Removal and Deletion of Cloud Service Customer Assets",
+    "domain": "Asset Management",
+    "description": "Cloud customer data assets must support cryptographic erasure and customer-managed encryption lifecycle controls (e.g. IBM Key Protect CRKs).",
+    "rules_mapped": ["RR-COS-003"]
+  },
+  {
+    "control_id": "CLD.9.5.1",
+    "clause": "9.5.1",
+    "title": "Segregation in Virtual Computing Environments",
+    "domain": "Access Control",
+    "description": "Multi-tenant cloud resources and virtual computing environments must enforce strict logical segregation to prevent cross-tenant or unauthorized perimeter access.",
+    "rules_mapped": ["RR-COS-001", "RR-COS-002", "RR-VPC-001", "RR-VPC-002", "RR-VPC-003", "RR-VPC-004", "RR-VPC-006", "RR-IAM-001", "RR-IAM-002", "RR-IAM-003", "RR-IAM-004"]
+  },
+  {
+    "control_id": "CLD.9.5.2",
+    "clause": "9.5.2",
+    "title": "Virtual Machine and Operating System Hardening",
+    "domain": "Access Control",
+    "description": "Virtual compute instances must be hardened by disabling unneeded network services, removing default ingress allowances, and shielding remote administrative ports (SSH/RDP).",
+    "rules_mapped": ["RR-VPC-001", "RR-VPC-002", "RR-VPC-005"]
+  },
+  {
+    "control_id": "CLD.12.1.5",
+    "clause": "12.1.5",
+    "title": "Shared Resource Management in Cloud Services",
+    "domain": "Operations Security",
+    "description": "Shared cloud storage and compute instances must maintain strict isolation parameters, object versioning, and access permission verification.",
+    "rules_mapped": ["RR-COS-001", "RR-COS-003", "RR-COS-004", "RR-VPC-003", "RR-IAM-001", "RR-IAM-003"]
+  },
+  {
+    "control_id": "CLD.12.4.5",
+    "clause": "12.4.5",
+    "title": "Information Security Event Logging for Cloud Services",
+    "domain": "Operations Security",
+    "description": "Comprehensive audit logging of control-plane and administrative events must be captured, routed, archived to immutable storage, and actively monitored.",
+    "rules_mapped": ["RR-COS-005", "RR-TRK-001", "RR-TRK-002", "RR-TRK-003"]
+  },
+  {
+    "control_id": "CLD.13.1.4",
+    "clause": "13.1.4",
+    "title": "Protection of Cloud Network Environments and Boundaries",
+    "domain": "Communications Security",
+    "description": "Network boundaries, security groups, and access control lists must prevent unauthorized exposure of internal cloud workloads and database tiers to public internet routing.",
+    "rules_mapped": ["RR-COS-001", "RR-COS-002", "RR-VPC-001", "RR-VPC-002", "RR-VPC-003", "RR-VPC-004", "RR-VPC-005", "RR-VPC-006", "RR-IAM-005"]
+  }
+]

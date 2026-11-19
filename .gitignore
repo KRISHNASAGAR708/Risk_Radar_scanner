@@ -1,0 +1,13 @@
+# Node
+frontend/node_modules/
+frontend/.vite/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+.env
+
+# Reports temp cache
+backend/reports_output/*.tmp
